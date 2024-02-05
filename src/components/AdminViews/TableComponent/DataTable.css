@@ -3,20 +3,18 @@
 .table-wrapper::-webkit-scrollbar {
   width: 1.2rem;
   border-radius: 0px 10px 10px 0px;
-  @apply bg-light-primary;
 }
 
 /* Track */
 .table-wrapper::-webkit-scrollbar-track {
   background: transparent;
-  border-radius: 1rem;
 }
 
 /* Handle */
 .table-wrapper::-webkit-scrollbar-thumb {
-  @apply bg-light-secondary;
+  @apply bg-light-primary;
   background-clip: content-box;
-  border-radius: 20px;
+  border-radius: .4rem;
   border: .4rem solid transparent;
 }
 

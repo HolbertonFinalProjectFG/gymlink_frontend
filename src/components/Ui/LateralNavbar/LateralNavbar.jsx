@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom"
-import { PersonSvg, WarehouseSvg, PaperSvg, PersonsSvg} from './assets'
+import { NavLink, Outlet } from "react-router-dom"
+import { PersonSvg, WarehouseSvg, PersonsSvg} from './assets'
 
 const linksData = [
   {'img_path': <PersonsSvg/>, 'title': 'Clientes', 'link':'clients'},
@@ -11,6 +11,7 @@ const linksData = [
 export const LateralNavbar = () => {
   
   return (
+    <>
       <nav className="group w-[7rem] overflow-hidden transition-all flex flex-col h-svh hover:w-[18rem] items-center bg-light-secondary p-8 group-hover:px-8 gap-12 text-light-secondary_op">
         <NavLink className="group flex w-full items-center justify-between transition-colors rounded-xl">
           <div className="min-w-12 h-12 rounded-xl bg-light-secondary_op"></div>
@@ -30,6 +31,8 @@ export const LateralNavbar = () => {
             )
           }
         </ul>
-      </nav> 
+      </nav>
+      <Outlet/>
+    </>
   )
 }
