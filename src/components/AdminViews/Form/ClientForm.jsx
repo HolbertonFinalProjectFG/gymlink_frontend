@@ -7,7 +7,12 @@ import { Input } from "./Input"
 const initialState = {
   name: '',
   surname: '',
-  birth_date: ''
+  ci: '',
+  email: '',
+  birth_date: '',
+  phone_number: '',
+  emergency_number: '',
+  insurance: ''
 }
 
 export const ClientForm = ({ state, setState }) => {
@@ -22,19 +27,40 @@ export const ClientForm = ({ state, setState }) => {
   const {
     name,
     surname,
-    birth_date
+    CI,
+    email,
+    birth_date,
+    phone_number,
+    emergency_number,
+    insurance
   } = formState
 
   const formConfig = [
-    {type: 'text', value: name, name: 'name', err: formErrors.name},
-    {type: 'text', value: surname, name: 'surname', err: formErrors.surname},
-    {type: 'date', value: birth_date, name: 'birth_date', err: formErrors.birth_date}
+    {value: name, name: 'name',type: 'text', err: formErrors.name},
+    {value: surname, name: 'surname',type: 'text', err: formErrors.surname},
+    {value: CI, name: 'CI',type: 'text', err: formErrors.CI},
+    {value: email, name: 'email',type: 'email', err: formErrors.email},
+    {value: birth_date, name: 'birth_date',type: 'date', err: formErrors.birth_date},
+    {value: phone_number, name: 'phone_number',type: 'text', err: formErrors.phone_number},
+    {value: emergency_number, name: 'emergency_number',type: 'text', err: formErrors.emergency_number},
+    {value: insurance, name: 'insurance',type: 'text', err: formErrors.insurance},
   ]
-  
+
+  const phoneRegex = new RegExp(
+    /^([+]\d{1,3})(\d*)$/
+  );
+
   const schema = z.object({
+    
     name: z.string().min(1, {message: "Name cannot be empty"}).refine((value) => {return /^\D+$/.test(value);}, {message: 'Name must not contain numeric values'}),
     surname: z.string().refine((value) => {return /^\D+$/.test(value);}, {message: 'Surname must not contain numeric values'}),
-    birth_date: z.coerce.date()
+    CI: z.string().min(1),
+    email: z.string().min(1, { message: "This field has to be filled." }).email("This is not a valid email."),
+    birth_date: z.coerce.date(),
+    phone_number: z.string().min(10).regex(phoneRegex, 'Must contain the phone prefix eg. +598...'),
+    emergency_number: z.string().min(10).regex(phoneRegex, 'Must contain the phone prefix eg. +598...'),
+    insurance: z.string().min(1)
+
   })
 
   const onFormSubmit = (e) => {
