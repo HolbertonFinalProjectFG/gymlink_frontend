@@ -9,9 +9,11 @@ export const TableRow = ({ obj }) => {
     
     setSelectedId({
       ...selectedId,
-      client_id: obj.client_id
-    })
+      client_id: (obj.client_id === selectedId.client_id)
+      ? undefined
+      : obj.client_id,
 
+    })
   }
 
   return (
