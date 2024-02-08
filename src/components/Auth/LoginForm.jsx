@@ -8,7 +8,7 @@ export const LoginForm = () => {
         <p className="text-sm text-login-fontLight text-gray-500">Sign in into your account</p>
         <div className="flex flex-col pt-8 gap-6">
           <input className="h-12 p-2.5 rounded-lg bg-transparent border border-gray-500 border-opacity-50 focus:outline-none focus:border-gray-700 transition ease-in-out" type="text" placeholder="Email"></input>
-          <input className="h-12 p-2.5 rounded-lg bg-transparent border border-gray-500 border-opacity-50 focus:outline-none focus:border-gray-700 transition ease-in-out"  type="text" placeholder="Password"></input>
+          <input className="h-12 p-2.5 rounded-lg bg-transparent border border-gray-500 border-opacity-50 focus:outline-none focus:border-gray-700 transition ease-in-out"  type="password" placeholder="Password"></input>
         </div>
         <Link to={'/'} className="text-sm text-login-accent pt-4 pl-1 hover:text-light-primary transition-colors ease-in-out">Forgot password?</Link>
         <button type="submit" className="p-2 mt-20 font-bold bg-login-accent text-login-form rounded-lg text-xl bg-light-primary text-white hover:scale-[0.99] transition ease-in-out">Login</button>
