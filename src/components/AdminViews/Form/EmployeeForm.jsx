@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { z } from 'zod'
 import './Form.css'
 import { Input } from './Input'
@@ -16,20 +16,14 @@ const initialState = {
   insurance: ''
 }
 
-export const ClientForm = ({ state, setState }) => {
+export const EmployeeForm = ({ state, setState }) => {
   const [formErrors, setFormErrors] = useState([])
-  const [trainers, setTrainers] = useState([])
-  const [selectedTrainer, setSelectedTrainer] = useState(undefined)
 
   const {
     formState,
     onInputChange,
     onResetForm
   } = useForm(initialState)
-
-  const onSelectChange = (e) => {
-    setSelectedTrainer(e.target.value)
-  }
 
   const {
     name,
@@ -83,7 +77,7 @@ export const ClientForm = ({ state, setState }) => {
     } else {
       axios.post(postUrl, {
         ...formState,
-        role_id: [4] // Falta la sección para poder asignar un cliente
+        role_id: [5]
         // trainer_id: selectedTrainer === '' ? null : parseInt(selectedTrainer)
       }, { withCredentials: true })
         .then(({ data }) => {
@@ -95,14 +89,6 @@ export const ClientForm = ({ state, setState }) => {
         })
     }
   }
-
-  useEffect(() => {
-    const reqUrl = import.meta.env.VITE_BACKEND_URL + '/api/user/role/3'
-
-    axios.get(reqUrl, { withCredentials: true })
-      .then(({ data }) => setTrainers(data.data))
-      .catch((err) => console.log(err))
-  }, [])
 
   return (
     <div className={` ${state ? 'flex' : 'hidden'} w-screen h-screen absolute top-0 left-0 z-40 flex-col items-center justify-center bg-black/[0.5] backdrop-blur-sm`}>
@@ -126,7 +112,7 @@ export const ClientForm = ({ state, setState }) => {
           </svg>
         </button>
         <h1 className="text-left mb-10 text-3xl font-bold">
-          Add new client
+          Add new employee
         </h1>
         <form className="flex flex-col self-center items-center gap-3 overflow-y-auto h-full p-1 w-[90%]">
         {
@@ -136,19 +122,7 @@ export const ClientForm = ({ state, setState }) => {
             )
             : <></>
         }
-        <select value={undefined} onChange={onSelectChange} defaultValue={undefined} className="w-full min-h-12 rounded-xl pl-2 text-gray-400">
-          <option value=''>Trainer not assigned</option>
-          {
-            trainers
-              ? trainers.map((trainer, idx) =>
-              <option key={idx} value={trainer.user_id}>
-                {trainer.name + ' ' + trainer.surname}
-              </option>
-              )
 
-              : <option></option>
-          }
-        </select>
         </form>
         <button className="
           mt-10 bg-light-primary ml-auto mr-auto w-full

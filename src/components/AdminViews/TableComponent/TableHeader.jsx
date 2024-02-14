@@ -1,15 +1,19 @@
-export const TableHeader = ({headers}) => {
+export const TableHeader = ({ headers }) => {
   return (
-    <tr className="text-left">
-    {
-      headers
-      ? headers.map((header, index) => {
-        return(
-          <th className="p-4 pl-6 capitalize" key={index}>{header}</th>
-        )
-      })
-      : 'loading...'
-    }
-  </tr>
+    <thead className="sticky top-0 w-full bg-light-primary text-light-backg z-10">
+      <tr className="text-left w-full">
+      {
+        headers
+          ? headers.map((header, index) => {
+            return (
+            <th className="p-4 pl-6 capitalize" key={index}>{header.replace('_', ' ')}</th>
+            )
+          })
+          : 'loading...'
+      }
+      <th className="p-4 pl-6 capitalize"></th>
+      {/* <th className="p-4 pl-6 capitalize"></th> */}
+      </tr>
+    </thead>
   )
 }
