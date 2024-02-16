@@ -5,23 +5,27 @@ import {
 } from 'react'
 import { DetailsCard } from '../../components/AdminViews/DetailsCard/DetailsCard'
 import { DataTable } from '../../components/AdminViews/TableComponent/DataTable'
-import { EmployeeForm } from '../../components/AdminViews/Form/EmployeeForm'
+import { EmployeeForm } from '../../components/AdminViews/Form/PostForm/EmployeeForm'
 import { getDataFilteredByFields } from '../../helpers/getDataFilteredByFields'
+import { PopUpConfirm } from '../../components/Ui/PopUpConfirm/PopUpConfirm'
 
 const headers = ['user_id', 'name', 'surname', 'email']
-const reqEndpoint = import.meta.env.VITE_BACKEND_URL + '/api/user/role/5'
+const reqEndpoint = import.meta.env.VITE_BACKEND_URL + '/api/user/role/'
 
 export const AdminEmployeesView = () => {
   const [formOpen, setFormOpen] = useState(false)
   const [filteredData, setFilteredData] = useState([])
 
   useEffect(() => {
-    axios.get(reqEndpoint, { withCredentials: true })
-      .then(({ data }) => {
-        setFilteredData(getDataFilteredByFields(
-          data.data,
-          headers
-        ))
+    axios.get(reqEndpoint + '3', { withCredentials: true })
+      .then(({ data: emplData }) => {
+        axios.get(reqEndpoint + '5', { withCredentials: true })
+          .then(({ data }) => {
+            setFilteredData(getDataFilteredByFields(
+              emplData.data.concat(data.data),
+              headers
+            ))
+          })
       })
   }, [])
 
@@ -32,6 +36,7 @@ export const AdminEmployeesView = () => {
   return (
     <>
       <main className="flex flex-col w-full gap-5 h-full p-10 bg-light-backg overflow-y-hidden">
+        <PopUpConfirm/>
         <h2 className="text-4xl font-bold">Employees</h2>
         <div className="flex flex-row w-full h-full pb-28 bg-light-backg gap-14 md:flex-row">
           <DataTable data={filteredData} headers={headers} field={'employee_id'}/>

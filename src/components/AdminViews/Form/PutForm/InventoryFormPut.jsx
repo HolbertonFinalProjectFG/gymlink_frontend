@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { z } from 'zod'
-import './Form.css'
-import { Input } from './Input'
-import { useForm } from '../../../hooks/useForm'
+import '../Form.css'
+import { Input } from '../Input'
+import { useForm } from '../../../../hooks/useForm'
 import axios from 'axios'
 
 const initialState = {
@@ -10,7 +10,7 @@ const initialState = {
   quantity: 0
 }
 
-export const InventoryForm = ({ state, setState }) => {
+export const InventoryFormPut = ({ state, setState }) => {
   const [formErrors, setFormErrors] = useState([])
 
   const {

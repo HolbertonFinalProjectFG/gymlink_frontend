@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { z } from 'zod'
-import './Form.css'
-import { Input } from './Input'
-import { useForm } from '../../../hooks/useForm'
+import '../Form.css'
+import { Input } from '../Input'
+import { useForm } from '../../../../hooks/useForm'
 import axios from 'axios'
 
 const initialState = {
@@ -18,6 +18,7 @@ const initialState = {
 
 export const EmployeeForm = ({ state, setState }) => {
   const [formErrors, setFormErrors] = useState([])
+  const [roleState, setRoleState] = useState('employee')
 
   const {
     formState,
@@ -64,6 +65,11 @@ export const EmployeeForm = ({ state, setState }) => {
 
   })
 
+  const onSelectChange = (e) => {
+    setRoleState(e.target.value)
+    console.log(roleState)
+  }
+
   const onFormSubmit = (e) => {
     const postUrl = import.meta.env.VITE_BACKEND_URL + '/api/user/'
     console.log(formState)
@@ -75,9 +81,10 @@ export const EmployeeForm = ({ state, setState }) => {
     if (!result.success) {
       setFormErrors(result.error.format())
     } else {
+      console.log(roleState)
       axios.post(postUrl, {
         ...formState,
-        role_id: [5]
+        role_id: roleState === 'trainer' ? [3] : [5]
         // trainer_id: selectedTrainer === '' ? null : parseInt(selectedTrainer)
       }, { withCredentials: true })
         .then(({ data }) => {
@@ -117,9 +124,17 @@ export const EmployeeForm = ({ state, setState }) => {
         <form className="flex flex-col self-center items-center gap-3 overflow-y-auto h-full p-1 w-[90%]">
         {
           formConfig
-            ? formConfig.map((e, idx) =>
-            <Input key={idx} {...e} fnc={onInputChange}/>
-            )
+            ? <>
+            {
+              formConfig.map((e, idx) =>
+              <Input key={idx} {...e} fnc={onInputChange}/>
+              )
+            }
+            <select onChange={onSelectChange} className="w-full min-h-12 rounded-xl pl-2 text-gray-400">
+              <option value={'trainer'}>Trainer</option>
+              <option value={'employee'}>Employee</option>
+            </select>
+            </>
             : <></>
         }
 

@@ -1,12 +1,15 @@
 import { useContext } from 'react'
 import { AdminContext } from '../../../context/AdminContext/AdminContext'
-import axios from 'axios'
 import Trash from './assets/Trash.svg'
+import Edit from './assets/Edit.svg'
 
 export const TableRow = ({ obj, field }) => {
   const { selectedId, setSelectedId } = useContext(AdminContext)
+  const { deleteState, setDeleteState } = useContext(AdminContext)
+  const { putState, setPutState } = useContext(AdminContext)
 
   const handleSelectedClient = () => {
+    console.log(selectedId)
     setSelectedId({
       ...selectedId,
       [field]: (obj.user_id === selectedId[field])
@@ -17,10 +20,20 @@ export const TableRow = ({ obj, field }) => {
   }
 
   const handleDelete = () => {
-    const url = import.meta.env.VITE_BACKEND_URL + '/api/user'
-    axios.delete(url)
-      .then(({ data }) => console.log(data))
-      .catch((err) => console.log(err))
+    console.log('Trash clicked')
+    setDeleteState({
+      ...deleteState,
+      user_id: obj.user_id,
+      open: true
+    })
+  }
+
+  const handleEdit = () => {
+    setPutState({
+      ...putState,
+      user_id: obj.user_id,
+      open: true
+    })
   }
 
   return (
@@ -32,9 +45,12 @@ export const TableRow = ({ obj, field }) => {
           </td>
         })
       }
-      <td className='' onClick={handleDelete}>
-        <button className="flex flex-col items-center justify-center h-full hover:scale-110 transition-transform">
+      <td className='flex items-center justify-center gap-3 self-center h-full' >
+        <button onClick={handleDelete} className="flex flex-col items-center justify-center h-full hover:scale-110 transition-transform">
           <img className="w-8 h-8" src={ Trash }/>
+        </button>
+        <button onClick={handleEdit} className="flex flex-col items-center justify-center h-full hover:scale-110 transition-transform">
+          <img className="w-10 h-10" src={ Edit }/>
         </button>
       </td>
     </tr>

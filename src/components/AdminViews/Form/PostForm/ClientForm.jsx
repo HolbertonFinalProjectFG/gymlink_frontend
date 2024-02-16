@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { z } from 'zod'
-import './Form.css'
-import { Input } from './Input'
-import { useForm } from '../../../hooks/useForm'
+import '../Form.css'
+import { Input } from '../Input'
+import { useForm } from '../../../../hooks/useForm'
 import axios from 'axios'
 
 const initialState = {
@@ -81,10 +81,16 @@ export const ClientForm = ({ state, setState }) => {
     if (!result.success) {
       setFormErrors(result.error.format())
     } else {
+      console.log(
+        {
+          ...formState,
+          role_id: [4], // Falta la sección para poder asignar un cliente
+          trainer_id: selectedTrainer === '' ? null : parseInt(selectedTrainer)
+        })
       axios.post(postUrl, {
         ...formState,
-        role_id: [4] // Falta la sección para poder asignar un cliente
-        // trainer_id: selectedTrainer === '' ? null : parseInt(selectedTrainer)
+        role_id: [4], // Falta la sección para poder asignar un cliente
+        trainer_id: selectedTrainer === '' ? null : parseInt(selectedTrainer)
       }, { withCredentials: true })
         .then(({ data }) => {
           if (data.ok === true) {
@@ -99,10 +105,12 @@ export const ClientForm = ({ state, setState }) => {
   useEffect(() => {
     const reqUrl = import.meta.env.VITE_BACKEND_URL + '/api/user/role/3'
 
-    axios.get(reqUrl, { withCredentials: true })
-      .then(({ data }) => setTrainers(data.data))
-      .catch((err) => console.log(err))
-  }, [])
+    if (state) {
+      axios.get(reqUrl, { withCredentials: true })
+        .then(({ data }) => setTrainers(data.data))
+        .catch((err) => console.log(err))
+    }
+  }, [state])
 
   return (
     <div className={` ${state ? 'flex' : 'hidden'} w-screen h-screen absolute top-0 left-0 z-40 flex-col items-center justify-center bg-black/[0.5] backdrop-blur-sm`}>

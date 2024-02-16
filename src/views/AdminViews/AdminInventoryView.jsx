@@ -5,7 +5,7 @@ import {
 } from 'react'
 import { DataTable } from '../../components/AdminViews/TableComponent/DataTable'
 import { getDataFilteredByFields } from '../../helpers/getDataFilteredByFields'
-import { InventoryForm } from '../../components/AdminViews/Form/InventoryForm'
+import { InventoryForm } from '../../components/AdminViews/Form/PostForm/InventoryForm'
 
 const headers = ['item_name', 'quantity']
 const reqEndpoint = import.meta.env.VITE_BACKEND_URL + '/api/inventory'

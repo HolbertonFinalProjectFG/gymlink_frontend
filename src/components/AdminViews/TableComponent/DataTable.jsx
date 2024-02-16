@@ -8,24 +8,10 @@ import { useEffect, useState } from 'react'
 export const DataTable = ({ data, headers, field }) => {
   const [loading, setLoading] = useState(false)
 
-  // const reqEndpoint = import.meta.env.VITE_BACKEND_URL + endpoint
-  // const tableHeaders = ['user_id', 'name', 'surname', 'email',]
-
   useEffect(() => {
     data
       ? setLoading(false)
       : setLoading(true)
-
-    // axios.get(reqEndpoint, {withCredentials: true})
-    // .then(({ data }) => {
-    //   console.log(data)
-    //   setClientData(getDataFilteredByFields(data.data, tableHeaders))
-    //   setLoading(false)
-    // })
-    // .catch((err) => {
-    //   console.log(err)
-    //   setLoading(false)
-    // })
   }, [data])
 
   return (

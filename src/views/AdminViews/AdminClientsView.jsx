@@ -5,8 +5,10 @@ import {
 } from 'react'
 import { DetailsCard } from '../../components/AdminViews/DetailsCard/DetailsCard'
 import { DataTable } from '../../components/AdminViews/TableComponent/DataTable'
-import { ClientForm } from '../../components/AdminViews/Form/ClientForm'
+import { ClientForm } from '../../components/AdminViews/Form/PostForm/ClientForm'
 import { getDataFilteredByFields } from '../../helpers/getDataFilteredByFields'
+import { PopUpConfirm } from '../../components/Ui/PopUpConfirm/PopUpConfirm'
+import { ClientFormPut } from '../../components/AdminViews/Form/PutForm/ClientFormPut'
 
 const headers = ['user_id', 'name', 'surname', 'email']
 const reqEndpoint = import.meta.env.VITE_BACKEND_URL + '/api/user/role/4'
@@ -32,6 +34,9 @@ export const AdminClientsView = () => {
   return (
     <>
       <main className="flex flex-col w-full gap-5 h-full p-10 bg-light-backg overflow-y-hidden">
+        <PopUpConfirm/>
+        <ClientForm/>
+        <ClientFormPut/>
         <h2 className="text-4xl font-bold">Clients</h2>
         <div className="flex flex-row w-full h-full pb-28 bg-light-backg gap-14 md:flex-row">
           <DataTable data={filteredData} headers={headers} field={'client_id'}/>
