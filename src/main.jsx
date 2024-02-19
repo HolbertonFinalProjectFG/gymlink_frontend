@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { AdminRouter } from './router/AdminRouter.jsx'
 import { AuthRouter } from './router/AuthRouter.jsx'
+import { TrainerRouter } from './router/TrainerRouter.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -11,6 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <AdminRouter />
       <AuthRouter />
+      <TrainerRouter />
     </BrowserRouter>
   </React.StrictMode>
 )
