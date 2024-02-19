@@ -1,15 +1,14 @@
-import { NavLink, Outlet } from "react-router-dom"
-import { PersonSvg, WarehouseSvg, PersonsSvg} from './assets'
+import { NavLink, Outlet } from 'react-router-dom'
+import { PersonSvg, WarehouseSvg, PersonsSvg } from './assets'
 
 const linksData = [
-  {'img_path': <PersonsSvg/>, 'title': 'Clientes', 'link':'clients'},
-  {'img_path': <PersonSvg/>, 'title': 'Empleados', 'link':'employees'},
-  {'img_path': <WarehouseSvg/>, 'title': 'Inventario', 'link':'inventory'},
+  { img_path: <PersonsSvg/>, title: 'Clientes', link: 'clients' },
+  { img_path: <PersonSvg/>, title: 'Empleados', link: 'employees' },
+  { img_path: <WarehouseSvg/>, title: 'Inventario', link: 'inventory' }
   // {'img_path': <PaperSvg/>, 'title': 'Reglas', 'link':''}
 ]
 
-export const LateralNavbar = () => {
-  
+export const LateralNavbarAdmin = () => {
   return (
     <>
       <nav className="group w-[7rem] overflow-hidden transition-all flex flex-col h-svh hover:w-[18rem] items-center bg-light-secondary p-8 group-hover:px-8 gap-12 text-light-secondary_op">
