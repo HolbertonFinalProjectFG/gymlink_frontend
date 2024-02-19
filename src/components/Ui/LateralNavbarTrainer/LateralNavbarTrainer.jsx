@@ -20,7 +20,7 @@ export const LateralNavbarTrainer = () => {
             linksData.map((e) =>
               (
                 <li key={e.title} className="w-full flex items-center justify-center hover:text-light-secondary hover:bg-light-primary transition-colors rounded-[20px]">
-                  <NavLink to={'/admin/' + e.link} className="flex items-center justify-left gap-14 w-full h-[3rem] p-3 text-m">
+                  <NavLink to={'/trainer/' + e.link} className="flex items-center justify-left gap-14 w-full h-[3rem] p-3 text-m">
                     <div className="self-start">{e.img_path}</div>
                     <p className="w-fit text-center">{e.title}</p>
                   </NavLink>

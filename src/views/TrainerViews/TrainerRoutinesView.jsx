@@ -1,20 +1,14 @@
-import { useContext } from "react"
-import { TrainerRoutinesContext } from "../../context/TrainerContext/RoutinesContext/TrainerRoutinesContext"
+// TrainerRoutinesView that contains the Weekly routine and
+// also contains the mgGroup
+
+import { WeekRoutine } from "../../components/Trainer"
 
 export const TrainerRoutinesView = () => {
 
-  const { weekArray, mgArray} = useContext(TrainerRoutinesContext)
-
   return (
-    <>
-      {
-      weekArray.week.length === 0
-      ? <p>Empty</p>
-      : weekArray.week.map((e, index) => <p key={index}>hola</p>)
-    }
-      <button onClick={() => {weekArray.pushDay(); console.log(weekArray)}}>
-        Add Day
-      </button>
-    </>
+    <main  className="flex flex-col w-full gap-5 h-full p-10 bg-light-backg overflow-y-hidden">
+      <h2 className="text-4xl font-bold">Routines</h2>
+      <WeekRoutine/>
+    </main>
   )
 }
