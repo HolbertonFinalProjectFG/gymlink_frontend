@@ -1,34 +1,32 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useDraggable } from '@dnd-kit/core'
 
-export const Mg = () => {
-  const [data, setData] = useState(null);
+export const Mg = ({
+  content,
+  name,
+  gm_template_id
+}) => {
 
-  useEffect(() => {
-    axios.get(import.meta.env.VITE_API_URL + '/api/mg', { withCredentials: true })
-      .then((response) => {
-        console.log(response)
-        setData(response.data);
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, []);
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: gm_template_id,
+    data: {name, content, gm_template_id},
+  });
+
+  const style = transform ? {
+    transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+  } : undefined;
 
   return (
-    <div>
-      <div className="w-full h-fit min-h-[10rem] relative p-10 flex flex-col items-center justify-center border-4 border-light-secondary rounded-xl">
-        {/* {data
-        ? data.map((mg, idx) => {
-          return (
-            <div key={idx}>
-              <p className="font-bold text-light-primary">{mg.name}</p>
-              <p>{mg.content}</p>
-            </div>
+    <div className="border-4 w-[calc(50%-1.25rem)] border-light-secondary rounded-xl p-5" ref={setNodeRef} {...attributes} {...listeners} style={style}>
+      <p className="font-bold text-light-primary text-2xl">{name}</p>
+      <ul>
+        {
+          content.map((e, idx) =>
+            <li key={idx} className="text-lg">
+              {e}
+            </li>
           )
-        })
-        : <p>Loading failed</p>} */}
-      </div>
+        }
+      </ul>
     </div>
   )
 }

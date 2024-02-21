@@ -1,27 +1,21 @@
 // This component is going to render DayRoutine components.
 // Also is going to manage the global state of the week.
 
-import { useDispatch, useSelector } from 'react-redux'
 import { AddNew } from '../AddNew'
 import { DayRoutine } from './DayRoutine'
-import { addDayToWeek } from '../../../store'
 
-export const WeekRoutine = () => {
-
-  const dispatch = useDispatch()
-  const { week } = useSelector((state) => state.trainerRoutines)
+export const WeekRoutine = ({add, pop, week}) => {
 
   return (
-    <section className='flex flex-col w-[60%] h-full overflow-auto'>
+    <section className='flex flex-col flex-2 h-[95%] overflow-auto'>
       <ul className='flex flex-col gap-5 h-fit'>
         {
-          week.length >= 0
-          ? week.map((day, idx) => <DayRoutine key={idx} idx={idx} isLast={idx === week.length - 1 ? true : false}/>)
-          : undefined
+          week.length >= 0 &&
+          (week.map((day, idx) => <DayRoutine pop={pop} key={idx} idx={idx} isLast={idx === week.length - 1 ? true : false}/>))
         }
         {
           week.length < 7
-          ? <AddNew fnc={() => dispatch(addDayToWeek())}/>
+          ? <AddNew fnc={() => {add()}} long={true}/>
           : undefined
         }
       </ul>
