@@ -3,10 +3,10 @@ import { TrainerContext } from './TrainerContext'
 
 export const TrainerProvider = ({ children }) => {
 
-  const [selectedUserId, setSelectedUserId] = useState(undefined)
+  const [selectedUser, setSelectedUser] = useState(undefined)
 
   return (
-    <TrainerContext.Provider value={{ selectedUserId, setSelectedUserId }}>
+    <TrainerContext.Provider value={{ selectedUser, setSelectedUser }}>
       {children}
     </TrainerContext.Provider>
   )

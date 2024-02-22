@@ -1,13 +1,14 @@
-import { useDraggable } from '@dnd-kit/core'
+import { DragOverlay, useDraggable } from '@dnd-kit/core'
 
 export const Mg = ({
   content,
   name,
-  gm_template_id
+  gm_template_id,
+  idx
 }) => {
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: gm_template_id,
+    id: [idx] + gm_template_id,
     data: {name, content, gm_template_id},
   });
 
@@ -16,17 +17,17 @@ export const Mg = ({
   } : undefined;
 
   return (
-    <div className="border-4 w-[calc(50%-1.25rem)] border-light-secondary rounded-xl p-5" ref={setNodeRef} {...attributes} {...listeners} style={style}>
-      <p className="font-bold text-light-primary text-2xl">{name}</p>
-      <ul>
-        {
-          content.map((e, idx) =>
-            <li key={idx} className="text-lg">
-              {e}
-            </li>
-          )
-        }
-      </ul>
-    </div>
+      <div className="border-4 w-fit border-light-secondary bg-light-secondary rounded-xl p-5" ref={setNodeRef} {...attributes} {...listeners} style={style}>
+        <p className="font-bold text-light-primary text-2xl">{name}</p>
+        <ul>
+          {
+            content.map((e, idx) =>
+              <li key={idx} className="text-lg">
+                {e}
+              </li>
+            )
+          }
+        </ul>
+      </div>
   )
 }

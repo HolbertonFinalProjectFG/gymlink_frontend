@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+ import { Routes, Route, Navigate } from 'react-router-dom'
 import { TrainerRoutinesView, TrainerClientsView } from '../views/TrainerViews'
 import { LateralNavbarTrainer } from '../components/Ui/LateralNavbarTrainer'
 import { TrainerProvider, TrainerClientProvider } from '../context/TrainerContext/'
