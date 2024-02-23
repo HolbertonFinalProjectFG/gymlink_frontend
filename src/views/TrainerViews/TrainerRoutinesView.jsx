@@ -7,12 +7,13 @@ import { MgGroup } from "../../components/Trainer/MgGroup/MgGroup"
 import { DndContext } from '@dnd-kit/core'
 import { ConfirmModal } from "../../components/Ui/Modals/ConfirmModal"
 import { TrainerContext } from "../../context/TrainerContext/TrainerContext"
+import { gymlink } from "../../api/gymlink"
 
 
 export const TrainerRoutinesView = () => {
   
-  const [weekArray, setweekArray] = useState([])
   const [active, setActive] = useState(null)
+  const [weekArray, setweekArray] = useState([])
 
   const [submitModalOpen, setSubmitModalOpen] = useState(false)
   const [submitApproved, setSubmitApproved] = useState(false)
@@ -67,17 +68,17 @@ export const TrainerRoutinesView = () => {
 
       console.log(
         {
-          user_id: selectedUser,
+          user_id: parseInt(selectedUser),
           content: weekObj
         }
       )
-      
-      // gymlink.post("/api/routines",
-      //   {
-      //     user_id: selectedUser,
-      //     content: weekObj
-      //   }
-      // )
+
+      gymlink.post("/api/routines",
+        {
+          user_id: parseInt(selectedUser),
+          content: weekObj
+        }
+      )
 
       setSubmitApproved(false)
     }
@@ -86,12 +87,22 @@ export const TrainerRoutinesView = () => {
 
   return (
     <main className="flex flex-col w-full gap-5 h-full p-10 bg-light-backg overflow-y-hidden">
-        <ConfirmModal
-          open={submitModalOpen}
-          setOpen={setSubmitModalOpen}
-          setOption={setSubmitApproved}
-          message={`Do you want to submit this routine to`}
-        />
+        {
+          selectedUser !== undefined ?
+          <ConfirmModal
+            open={submitModalOpen}
+            setOpen={setSubmitModalOpen}
+            setOption={setSubmitApproved}
+            message={`Do you want to submit this routine`}
+          />
+          :
+          <SelectUserAsign
+            open={submitModalOpen}
+            setOpen={setSubmitModalOpen}
+            setOption={setSubmitApproved}
+          />
+
+        }
       <h2 className="text-4xl font-bold">Routines</h2>
       <section className="flex flex-row gap-10 h-full">
         <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
