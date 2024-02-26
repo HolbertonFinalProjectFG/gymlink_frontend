@@ -6,16 +6,16 @@ import {
 import { DataTable } from '../../components/AdminViews/TableComponent/DataTable'
 import { getDataFilteredByFields } from '../../helpers/getDataFilteredByFields'
 import { InventoryForm } from '../../components/AdminViews/Form/PostForm/InventoryForm'
+import { gymlink } from '../../api/gymlink'
 
 const headers = ['item_name', 'quantity']
-const reqEndpoint = import.meta.env.VITE_BACKEND_URL + '/api/inventory'
 
 export const AdminInventoryView = () => {
   const [formOpen, setFormOpen] = useState(false)
   const [filteredData, setFilteredData] = useState([])
 
   useEffect(() => {
-    axios.get(reqEndpoint, { withCredentials: true })
+    gymlink.get('/api/inventory')
       .then(({ data }) => {
         setFilteredData(getDataFilteredByFields(
           data.data,

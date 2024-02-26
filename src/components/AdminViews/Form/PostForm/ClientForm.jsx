@@ -81,15 +81,10 @@ export const ClientForm = ({ state, setState }) => {
     if (!result.success) {
       setFormErrors(result.error.format())
     } else {
-      console.log(
-        {
-          ...formState,
-          role_id: [4], // Falta la sección para poder asignar un cliente
-          trainer_id: selectedTrainer === '' ? null : parseInt(selectedTrainer)
-        })
+
       axios.post(postUrl, {
         ...formState,
-        role_id: [4], // Falta la sección para poder asignar un cliente
+        role_id: [4], // Falta la seccion para poder asignar un cliente
         trainer_id: selectedTrainer === '' ? null : parseInt(selectedTrainer)
       }, { withCredentials: true })
         .then(({ data }) => {
