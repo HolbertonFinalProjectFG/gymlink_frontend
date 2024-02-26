@@ -5,6 +5,8 @@ import { DragOverlay, useDroppable } from '@dnd-kit/core'
 import { gymlink } from "../../../api/gymlink"
 import { AddMg } from "../Form/AddMg"
 
+import '../Scrollbar.css'
+
 export const MgGroup = ({ active }) => {
 
   const [show, setShow] = useState(false)
@@ -33,7 +35,7 @@ export const MgGroup = ({ active }) => {
     <section
       ref={setNodeRef}
       {...attributes}
-      className="overflow-y-auto overflow-x-hidden flex flex-1 items-center justify-start flex-row h-[95%] flex-wrap gap-5 p-5 border-4 border-light-secondary rounded-xl">
+      className="scrollbar overflow-y-auto overflow-x-hidden flex flex-1 items-center justify-start flex-row h-[95%] flex-wrap gap-5 p-5 border-4 border-light-secondary rounded-xl">
       <AddNew fnc={() => showFormAddMg()} long={true}/>
       {
         loading && (
@@ -53,7 +55,7 @@ export const MgGroup = ({ active }) => {
           : null
         }
       </DragOverlay>
-      <AddMg show={show}/>
+      <AddMg show={show} setShow={setShow}/>
     </section>
   );
 };

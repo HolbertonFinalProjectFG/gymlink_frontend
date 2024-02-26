@@ -4,10 +4,12 @@
 import { AddNew } from '../AddNew'
 import { DayRoutine } from './DayRoutine'
 
+import '../Scrollbar.css'
+
 export const WeekRoutine = ({add, pop, week, submitOpen}) => {
 
   return (
-    <section className='flex flex-col flex-2 h-[95%] overflow-auto'>
+    <section className='scrollbar flex flex-col flex-2 h-[95%] overflow-auto'>
       <ul className='flex flex-col gap-5 h-fit'>
         {
           week.length >= 0 &&
@@ -25,7 +27,7 @@ export const WeekRoutine = ({add, pop, week, submitOpen}) => {
       </ul>
       {
         week.length > 0
-        ? <button onClick={() => {submitOpen(true)}} className='ml-auto mt-3 py-2 px-4 bg-light-primary rounded-xl text-light-backg'>
+        ? <button onClick={() => {submitOpen(true)}} className='ml-auto mt-3 py-2 px-4 bg-light-primary rounded-xl text-light-backg hover:scale-[1.02] transition-transform active:scale-[0.99]'>
             Submit Routine
           </button>
         : undefined

@@ -7,6 +7,7 @@ import { MgGroup } from "../../components/Trainer/MgGroup/MgGroup"
 import { DndContext } from '@dnd-kit/core'
 import { ConfirmModal } from "../../components/Ui/Modals/ConfirmModal"
 import { TrainerContext } from "../../context/TrainerContext/TrainerContext"
+// import { gymlink } from "../../apis/gymlink"
 
 
 export const TrainerRoutinesView = () => {
