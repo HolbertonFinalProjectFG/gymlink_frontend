@@ -3,3 +3,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#root{
+  height: 100svh;
+  width: 100svw;
+}
