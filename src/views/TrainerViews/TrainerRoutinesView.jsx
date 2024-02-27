@@ -104,7 +104,7 @@ export const TrainerRoutinesView = () => {
 
         }
       <h2 className="text-4xl font-bold">Routines</h2>
-      <section className="flex flex-row gap-10 h-full">
+      <section className="flex flex-row gap-10 h-full sm:flex-col">
         <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
           <WeekRoutine week={weekArray} add={addDayToWeek} pop={popDayOfWeek} submitOpen={setSubmitModalOpen}/>
           <MgGroup active={active}/>
