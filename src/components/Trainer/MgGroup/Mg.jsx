@@ -18,11 +18,11 @@ export const Mg = ({
 
   return (
       <div className="border-4 w-fit border-light-secondary bg-light-secondary rounded-xl p-5" ref={setNodeRef} {...attributes} {...listeners} style={style}>
-        <p className="font-bold text-light-primary text-2xl">{name}</p>
+        <p className="font-bold text-light-primary text-2xl md:text-xl">{name}</p>
         <ul>
           {
             content.map((e, idx) =>
-              <li key={idx} className="text-lg">
+              <li key={idx} className="text-lg md:text-sm">
                 {e}
               </li>
             )

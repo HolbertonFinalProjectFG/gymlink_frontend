@@ -14,13 +14,13 @@ export const ConfirmModal = ({open, setOpen, setOption, message}) => {
         <p className="text-xl">{message}</p>
         <div className="flex flex-row gap-10">
           <button
-          onClick={() => {setOpen(false); setOption(false)}}
+          onClick={() => {setOpen(false); setOption(false);}}
           className="
             border px-10 py-2 rounded-xl hover:text-white hover:bg-black transition-colors">
             No
           </button>
           <button
-          onClick={() => {setOpen(false); setOption(true)}}
+          onClick={() => {setOpen(false); setOption(true);}}
           className="
             border px-10 py-2 rounded-xl hover:text-white hover:bg-black transition-colors">
             Yes
