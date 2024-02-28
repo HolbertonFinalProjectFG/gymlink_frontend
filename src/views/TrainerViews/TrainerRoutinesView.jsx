@@ -17,6 +17,8 @@ export const TrainerRoutinesView = () => {
   const [submitModalOpen, setSubmitModalOpen] = useState(false)
   const [submitApproved, setSubmitApproved] = useState(false)
 
+  const [mobileMgGroupOpen, setMobileMgGroupOpen] = useState(false)
+
   const { selectedUser } = useContext(TrainerContext)
 
   const sensors = useSensors(
@@ -40,6 +42,7 @@ export const TrainerRoutinesView = () => {
 
   const handleDragStart = (event) => {
     setActive(event.active)
+    setMobileMgGroupOpen(false)
   }
   
   const handleDragEnd = (event) => {
@@ -106,7 +109,7 @@ export const TrainerRoutinesView = () => {
       <section className="flex flex-row gap-10 h-full sm:flex-col">
         <DndContext sensors={sensors} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
           <WeekRoutine week={weekArray} add={addDayToWeek} pop={popDayOfWeek} submitOpen={setSubmitModalOpen}/>
-          <MgGroup active={active}/>
+          <MgGroup active={active} mobileMenuOpen={mobileMgGroupOpen} setMobileMenuOpen={setMobileMgGroupOpen}/>
         </DndContext>
       </section>
     </main>

@@ -8,11 +8,10 @@ import { Loader } from '../../Ui/Loader/Loader'
 
 import '../Scrollbar.css'
 
-export const MgGroup = ({ active }) => {
+export const MgGroup = ({ active, mobileMenuOpen, setMobileMenuOpen }) => {
   const [show, setShow] = useState(false)
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { attributes, setNodeRef } = useDroppable({
     id: 'mg_groups'
   })
@@ -62,7 +61,7 @@ export const MgGroup = ({ active }) => {
             <div
               ref={setNodeRef}
               {...attributes}
-              className=' bg-white items-center mx-8 h-[40%] mt-5 rounded-2xl flex flex-col gap-5 p-5 overflow-auto'>
+              className=' items-center mx-8 h-[40%] mt-5 rounded-2xl flex flex-col gap-5 p-5 overflow-auto'>
               
               {
                 loading && (
