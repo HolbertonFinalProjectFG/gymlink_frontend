@@ -6,8 +6,6 @@ import { gymlink } from '../../../api/gymlink'
 import { AddMg } from '../Form/AddMg'
 import { Loader } from '../../Ui/Loader/Loader'
 
-import '../Scrollbar.css'
-
 export const MgGroup = ({ active, mobileMenuOpen, setMobileMenuOpen }) => {
   const [show, setShow] = useState(false)
   const [data, setData] = useState(null)
@@ -51,34 +49,38 @@ export const MgGroup = ({ active, mobileMenuOpen, setMobileMenuOpen }) => {
   return (
     <>
       {
-        windowSize[0] <= 767 ?
-        <section className={`${mobileMenuOpen ? '-translate-y-1/2' : ''} hidden md:block transition-transform duration-500 w-full h-full bg-light-primary md:fixed top-[calc(100%-3rem)] right-0`}>
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className='w-full flex p-3 items-center justify-center'>
-              <svg className={`${mobileMenuOpen ? '' : 'rotate-180'} w-8 h-8`} width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L8.5 8L16 1" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            <div
-              ref={setNodeRef}
-              {...attributes}
-              className=' items-center mx-8 h-[40%] mt-5 rounded-2xl flex flex-col gap-5 p-5 overflow-auto'>
-              
-              {
-                loading && (
-                  <Loader/>
-                )
-              }
-              {
-                !loading && data && data.map((e, idx) => <Mg key={idx} {...e}/>)
-              }
+        windowSize[0] <= 767 ? (
+          
+          <section className={`${mobileMenuOpen ? '-translate-y-1/2' : ''} hidden md:block transition-transform duration-500 w-full h-full bg-light-primary md:fixed top-[calc(100%-3rem)] right-0`}>
+              <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className='w-full flex p-3 items-center justify-center'>
+                <svg className={`${mobileMenuOpen ? '' : 'rotate-180'} w-8 h-8`} width="17" height="9" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L8.5 8L16 1" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <div
+                ref={setNodeRef}
+                {...attributes}
+                className=' items-center mx-8 h-[40%] mt-5 rounded-2xl flex flex-col gap-5 p-5 overflow-auto'>
+                
+                {
+                  loading && (
+                    <Loader/>
+                  )
+                }
+                {
+                  !loading && data && data.map((e, idx) => <Mg key={idx} {...e}/>)
+                }
 
-            </div>
-        </section>
-        :
-        <section
+              </div>
+          </section>
+
+        )
+        : (
+
+          <section
           ref={setNodeRef}
           {...attributes}
-          className="items-center overflow-y-auto overflow-x-hidden flex flex-col flex-1 justify-center h-[95%] gap-5 p-5 border-4 border-light-secondary rounded-xl max-w-fit">
+          className="overflow-y-auto overflow-x-hidden flex flex-col flex-1 items-center justify-left h-[95%] gap-5 p-5 border-4 border-light-secondary rounded-xl max-w-fit">
           <AddNew fnc={() => showFormAddMg()} long={true}/>
           {
             loading && (
@@ -90,6 +92,7 @@ export const MgGroup = ({ active, mobileMenuOpen, setMobileMenuOpen }) => {
           }
           <AddMg show={show} setShow={setShow}/>
         </section>
+        )
       }
       <DragOverlay>
           {

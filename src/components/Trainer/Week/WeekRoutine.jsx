@@ -4,7 +4,6 @@
 import { AddNew } from '../AddNew'
 import { DayRoutine } from './DayRoutine'
 
-import '../Scrollbar.css'
 
 export const WeekRoutine = ({add, pop, week, submitOpen}) => {
 

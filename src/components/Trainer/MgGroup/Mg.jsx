@@ -1,4 +1,4 @@
-import { DragOverlay, useDraggable } from '@dnd-kit/core'
+import { useDraggable } from '@dnd-kit/core'
 
 export const Mg = ({
   content,

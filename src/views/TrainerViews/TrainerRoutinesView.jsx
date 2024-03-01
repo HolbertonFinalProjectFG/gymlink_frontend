@@ -4,7 +4,7 @@
 import { useContext, useEffect, useState } from "react"
 import { SelectUserAsign, WeekRoutine } from "../../components/Trainer"
 import { MgGroup } from "../../components/Trainer/MgGroup/MgGroup"
-import { DndContext, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
+import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { ConfirmModal } from "../../components/Ui/Modals/ConfirmModal"
 import { TrainerContext } from "../../context/TrainerContext/TrainerContext"
 import { gymlink } from "../../api/gymlink"
@@ -22,7 +22,8 @@ export const TrainerRoutinesView = () => {
   const { selectedUser } = useContext(TrainerContext)
 
   const sensors = useSensors(
-    useSensor(TouchSensor)
+    useSensor(TouchSensor),
+    useSensor(MouseSensor)
   )
   
   const addMgToDay = (dragEvent) => {
@@ -88,7 +89,7 @@ export const TrainerRoutinesView = () => {
   
 
   return (
-    <main className=" md:p-5 md:pt-20 flex flex-col w-full gap-5 h-full p-10 bg-light-backg overflow-y-hidden">
+    <main className="md:p-5 md:pt-20 flex flex-col w-full gap-5 h-full p-10 bg-light-backg overflow-y-hidden">
         {
           selectedUser !== undefined ?
           <ConfirmModal
