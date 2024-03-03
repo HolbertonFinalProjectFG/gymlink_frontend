@@ -17,10 +17,10 @@ export const TableRow = ({ obj, field }) => {
   }
 
   return (
-    <tr className="bg-light-secondary even:bg-light-backg hover:bg-light-primary_light transition-all cursor-pointer font-light min-h-[20rem]">
+    <tr className="md:text-sm bg-light-secondary even:bg-light-backg hover:bg-light-primary_light transition-all cursor-pointer font-light min-h-[20rem]">
       {
         Object.values(obj).map((elem, index) => {
-          return <td onClick={handleSelectedClient} className="p-7 whitespace-nowrap" key={index}>
+          return <td onClick={handleSelectedClient} className="md:p-4 p-7 whitespace-nowrap" key={index}>
             {elem}
           </td>
         })

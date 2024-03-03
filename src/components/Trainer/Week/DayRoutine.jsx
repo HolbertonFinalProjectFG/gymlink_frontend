@@ -13,7 +13,7 @@ export const DayRoutine = ({mgRoutines, idx, isLast, pop}) => {
 
   return (
     <div ref={setNodeRef} {...attributes}>
-      <h3 className="text-3xl font-bold text-light-primary pb-3">Day {idx + 1}</h3>
+      <h3 className="md:text-xl text-3xl font-bold text-light-primary pb-3">Day {idx + 1}</h3>
       <div className="w-full flex-wrap h-fit min-h-[10rem] relative p-10 flex flex-row gap-5 items-center justify-left border-4 border-light-secondary rounded-xl">
         <button onClick={() => {confirm("Delete?") ? pop(): null}} className={`${isLast ? 'flex' : 'hidden'} items-center justify-center absolute top-3 right-3 bg-light-primary text-light-backg w-10 h-10 p-2 rounded-xl hover:scale-[1.02] transition-transform active:scale-[0.99]`}>
           <svg width="23" height="5" viewBox="0 0 27 7" fill="none" xmlns="http://www.w3.org/2000/svg">
