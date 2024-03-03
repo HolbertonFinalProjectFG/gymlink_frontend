@@ -8,11 +8,11 @@ export const getDataFilteredByFields = (arr, fields) => {
   return arr.map(obj => {
     const filteredObj = {};
     fields.forEach(field => {
-        if (fields.includes(field)){
-            filteredObj[field] = obj[field];
-        }
+      if (fields.includes(field)){
+        filteredObj[field] = obj[field];
+      }
     });
     return filteredObj;
-}).filter(obj => Object.keys(obj).length > 0);
+  }).filter(obj => Object.keys(obj).length > 0);
 
 }

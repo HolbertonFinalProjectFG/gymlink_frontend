@@ -11,7 +11,7 @@ export const TableHeader = ({ headers }) => {
           })
           : 'loading...'
       }
-      {/* <th className="p-4 pl-6 capitalize"></th> */}
+      <th className="p-4 pl-6 capitalize">Routine</th>
       </tr>
     </thead>
   )
