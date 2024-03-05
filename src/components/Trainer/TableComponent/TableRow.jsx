@@ -1,19 +1,24 @@
-import { useContext } from 'react'
-import { AdminContext } from '../../../context/AdminContext/AdminContext'
+import { useState } from 'react'
+import { SeeRoutineButton } from '../SeeRoutineButton'
+import { ShowRoutine } from '../Form/ShowRoutine'
 
 
-export const TableRow = ({ obj, field }) => {
-  const { selectedId, setSelectedId } = useContext(AdminContext)
+export const TableRow = ({ obj, field, routineExist }) => {
+  const [show, setShow] = useState(false)
+  const [selectedId, setSelectedId] = useState(null)
+  // console.log(obj)
 
   const handleSelectedClient = () => {
-    console.log(selectedId)
     setSelectedId({
       ...selectedId,
       [field]: (obj.user_id === selectedId[field])
         ? undefined
         : obj.user_id
-
     })
+  }
+  console.log(selectedId)
+  const handleShowRoutine = () => {
+    setShow(true)
   }
 
   return (
@@ -25,6 +30,10 @@ export const TableRow = ({ obj, field }) => {
           </td>
         })
       }
+      <td>
+        <SeeRoutineButton fnc={() => handleShowRoutine()} routineExist={routineExist}/>
+        <ShowRoutine fnc2={() => handleSelectedClient} show={show} setShow={setShow}/>
+      </td>
     </tr>
   )
 }
