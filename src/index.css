@@ -3,3 +3,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#root{
+  height: 100svh;
+  width: 100svw;
+}
+
+::-webkit-scrollbar {
+  width: 1rem;
+  height: 1rem;
+}
+
+::-webkit-scrollbar-track{
+  width: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-light-primary;
+  background-clip: content-box;
+  border-radius: 2rem;
+  border: .4rem solid transparent;
+}
+/* Hover */
+::-webkit-scrollbar-thumb:hover {
+  background: orange;
+  background-clip: content-box;
+  border-radius: 2rem;
+}
+
+::-webkit-scrollbar-corner{
+  background-color: transparent;
+}
