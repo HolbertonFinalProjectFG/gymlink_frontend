@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { DataTable } from '../../components/Trainer/TableComponent/DataTable'
 import { getDataFilteredByFields } from '../../helpers/getDataFilteredByFields'
 import { gymlink } from '../../api/gymlink'
+import { ShowRoutine } from '../../components/Trainer/Form/ShowRoutine'
 
 const headers = ['user_id', 'name', 'surname', 'email']
 
@@ -9,6 +10,8 @@ const headers = ['user_id', 'name', 'surname', 'email']
 export const TrainerClientsView = () => {
   const [filteredData, setFilteredData] = useState([])
   const [routine, setRoutine] = useState([])
+  const [show, setShow] = useState(true)
+  const [clientSelected, setClientSelected] = useState({})
   
   useEffect(() => {
     gymlink.get('api/user/trainer/clients', { withCredentials: true })
@@ -16,13 +19,13 @@ export const TrainerClientsView = () => {
         // console.log(data.data)
         setFilteredData(getDataFilteredByFields(data.data, headers))
         setRoutine(data.data.map(client => {
-          return {
-            user_routines: client.user_routines.map(routine => routine.routine)
-          }
+          return [
+            client.user_routines.map(routine => routine.routine_id)
+          ]
         }))
       })
   }, [])
-
+  // console.log(routine)
 
   return (
     <>

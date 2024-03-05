@@ -5,9 +5,10 @@ import { ShowRoutine } from '../Form/ShowRoutine'
 
 export const TableRow = ({ obj, field, routineExist }) => {
   const [show, setShow] = useState(false)
+  const [selectedId, setSelectedId] = useState(null)
+  // console.log(obj)
 
   const handleSelectedClient = () => {
-    console.log(selectedId)
     setSelectedId({
       ...selectedId,
       [field]: (obj.user_id === selectedId[field])
@@ -15,12 +16,10 @@ export const TableRow = ({ obj, field, routineExist }) => {
         : obj.user_id
     })
   }
-
+  console.log(selectedId)
   const handleShowRoutine = () => {
     setShow(true)
   }
-
-
 
   return (
     <tr className="bg-light-secondary even:bg-light-backg transition-all font-light min-h-[20rem]">
@@ -32,8 +31,8 @@ export const TableRow = ({ obj, field, routineExist }) => {
         })
       }
       <td>
-        <ShowRoutine show={show} setShow={setShow}/>
         <SeeRoutineButton fnc={() => handleShowRoutine()} routineExist={routineExist}/>
+        <ShowRoutine fnc2={() => handleSelectedClient} show={show} setShow={setShow}/>
       </td>
     </tr>
   )
