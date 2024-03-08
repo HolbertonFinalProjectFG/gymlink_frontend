@@ -26,9 +26,9 @@ export const SelectUserAsign = ({ open, setOpen, setOption }) => {
 
   return (
     <div className="w-screen h-screen absolute top-0 left-0 flex items-center justify-center bg-light-secondary_op bg-opacity-50 z-50">
-      <div className="flex flex-col gap-10 items-center justify-center bg-light-backg p-10 rounded-xl">
-        <h2 className='text-xl font-bold '>Select a user to assign this routine</h2>
-        <select defaultValue={""} className='w-full h-10 px-4 rounded-xl' onChange={(e) => setSelectedClient(e.target.value)}>
+      <div className="md:m-10 md:text-center md:gap-5 flex flex-col gap-10 items-center justify-center bg-light-backg p-10 rounded-xl">
+        <h2 className='md:text-base text-xl font-bold '>Select a user to assign this routine</h2>
+        <select defaultValue={""} className='md:rounded-lg w-full h-10 px-4 rounded-xl' onChange={(e) => setSelectedClient(e.target.value)}>
           <option value="" disabled>Select your option</option>
           {
             trainerClients.map((client, idx) => 

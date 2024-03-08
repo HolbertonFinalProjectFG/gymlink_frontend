@@ -33,7 +33,7 @@ export const DetailsCard = ({ field }) => {
   const fullName = `${cardData.name} ${cardData.surname}`
 
   return (
-    <section className={`${selectedId[field] === undefined ? 'hidden' : ''} bg-light-secondary text-light-secondary_op flex min-w-[30%] flex-col p-10 pt-15 rounded-2xl relative overflow-y-auto`}>
+    <section className={`${selectedId[field] === undefined ? 'hidden' : ''} md:w-full md:p-5 bg-light-secondary text-light-secondary_op flex min-w-[30%] flex-col md:h-[40%] p-10 pt-15 rounded-2xl relative overflow-y-auto`}>
       <button onClick={handleCloseClient}>
         <svg height="20px" width="20px" version="1.1" id="Capa_1"
           viewBox="0 0 490 490" xmlSpace="preserve" className="absolute top-5 right-5 hover:text-red-500 transition-colors">
@@ -45,12 +45,12 @@ export const DetailsCard = ({ field }) => {
         loading
           ? <h2>Loading...</h2>
           : <>
-          <h2 className="text-3xl mb-5 font-bold">{fullName}</h2>
-          <ul className="flex flex-col gap-4 pl-2">
+          <h2 className="md:text-xl text-3xl mb-5 font-bold">{fullName}</h2>
+          <ul className="flex flex-col gap-4 pl-2 overflow-y-auto">
             {
               Object.entries(cardData).map(([key, value], i) => {
                 return (
-                  <li key={i} className="font-light text-lg">{key.charAt(0).toUpperCase() + key.slice(1).replace('_', ' ')}: <span className="font-extralight">{value}</span></li>
+                  <li key={i} className="font-light text-lg md:text-sm">{key.charAt(0).toUpperCase() + key.slice(1).replace('_', ' ')}: <span className="font-extralight">{value}</span></li>
                 )
               })
             }

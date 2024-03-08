@@ -3,9 +3,8 @@ import { TableRow } from './TableRow'
 import '../../AdminViews/TableComponent/DataTable.css'
 import { useEffect, useState } from 'react'
 
-//
 
-export const DataTable = ({ data, headers, field }) => {
+export const DataTable = ({ data, headers, field, routineExist }) => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -25,7 +24,7 @@ export const DataTable = ({ data, headers, field }) => {
             {
               data
                 ? data.map((obj, index) => (
-                  <TableRow field={field} key={index} obj={obj}/>
+                  <TableRow routineExist={routineExist} field={field} key={index} obj={obj}/>
                 ))
                 : []
             }

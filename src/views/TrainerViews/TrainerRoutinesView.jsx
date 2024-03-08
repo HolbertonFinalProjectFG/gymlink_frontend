@@ -4,11 +4,10 @@
 import { useContext, useEffect, useState } from "react"
 import { SelectUserAsign, WeekRoutine } from "../../components/Trainer"
 import { MgGroup } from "../../components/Trainer/MgGroup/MgGroup"
-import { DndContext } from '@dnd-kit/core'
+import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { ConfirmModal } from "../../components/Ui/Modals/ConfirmModal"
 import { TrainerContext } from "../../context/TrainerContext/TrainerContext"
 import { gymlink } from "../../api/gymlink"
-
 
 export const TrainerRoutinesView = () => {
   
@@ -18,7 +17,14 @@ export const TrainerRoutinesView = () => {
   const [submitModalOpen, setSubmitModalOpen] = useState(false)
   const [submitApproved, setSubmitApproved] = useState(false)
 
+  const [mobileMgGroupOpen, setMobileMgGroupOpen] = useState(false)
+
   const { selectedUser } = useContext(TrainerContext)
+
+  const sensors = useSensors(
+    useSensor(TouchSensor),
+    useSensor(MouseSensor)
+  )
   
   const addMgToDay = (dragEvent) => {
 
@@ -37,6 +43,7 @@ export const TrainerRoutinesView = () => {
 
   const handleDragStart = (event) => {
     setActive(event.active)
+    setMobileMgGroupOpen(false)
   }
   
   const handleDragEnd = (event) => {
@@ -65,20 +72,16 @@ export const TrainerRoutinesView = () => {
           return gmArr
         }, [])
       })
-
-      console.log(
-        {
-          user_id: parseInt(selectedUser),
-          content: weekObj
-        }
-      )
-
+  
       gymlink.post("/api/routines",
         {
           user_id: parseInt(selectedUser),
           content: weekObj
         }
       )
+      .then(() => {
+        setweekArray([])
+      })
 
       setSubmitApproved(false)
     }
@@ -86,7 +89,7 @@ export const TrainerRoutinesView = () => {
   
 
   return (
-    <main className="flex flex-col w-full gap-5 h-full p-10 bg-light-backg overflow-y-hidden">
+    <main className="md:p-5 md:pt-20 flex flex-col w-full gap-5 h-full p-10 bg-light-backg overflow-y-hidden">
         {
           selectedUser !== undefined ?
           <ConfirmModal
@@ -103,11 +106,11 @@ export const TrainerRoutinesView = () => {
           />
 
         }
-      <h2 className="text-4xl font-bold">Routines</h2>
-      <section className="flex flex-row gap-10 h-full">
-        <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
+      <h2 className="md:text-3xl text-4xl font-bold">Routines</h2>
+      <section className="flex flex-row gap-10 h-full sm:flex-col">
+        <DndContext sensors={sensors} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
           <WeekRoutine week={weekArray} add={addDayToWeek} pop={popDayOfWeek} submitOpen={setSubmitModalOpen}/>
-          <MgGroup active={active}/>
+          <MgGroup active={active} mobileMenuOpen={mobileMgGroupOpen} setMobileMenuOpen={setMobileMgGroupOpen}/>
         </DndContext>
       </section>
     </main>
