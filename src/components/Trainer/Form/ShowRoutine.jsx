@@ -1,50 +1,50 @@
 import { gymlink } from "../../../api/gymlink";
-import { useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import { TrainerContext } from "../../../context/TrainerContext/TrainerContext";
 
-export const ShowRoutine = ({fnc2, show, setShow }) => {
-  if (!show)
-    return;
-
-  const [data, setData] = useState({});
-  const [routine_id, setRoutine_id] = useState(27);
+export const ShowRoutine = () => {
+  
+  const [data, setData] = useState({})
+  const [routineLink, setRoutineLink] = useState('')
+  const { selectedRoutine, setSelectedRoutine, setSelectedUser } = useContext(TrainerContext)
 
   useEffect(() => {
-    gymlink.get(`api/routines/${routine_id}`, { withCredentials: true })
+    if (selectedRoutine !== null){
+      gymlink.get(`api/routines/${ selectedRoutine }`)
       .then(({ data }) => {
         setData(data.data);
       });
-  }, []);
+    }
 
-
-  const handleCloseRoutine = () => {
-    setShow(false);
-  };
-
-  const handleCloseRoutineClick = (e) => {
-    e.stopPropagation();
-  };
+    setRoutineLink(
+      import.meta.env.VITE_PUBLIC_URL
+      + `/routines/${ selectedRoutine }`
+    )
+  }, [selectedRoutine]);
+  
+  if (selectedRoutine === null)
+    return;
 
   const handleDeleteRoutine = async () => {
     if (!confirm("Are you sure you want to delete this routine?")) {
       return;
     }
     try {
-      await gymlink.delete(`api/routines/${routine_id}`, { withCredentials: true });
+      await gymlink.delete(`api/routines/${selectedRoutine}`);
       console.log("Routine deleted successfully");
-      setShow(false);
+      setSelectedRoutine(null);
+      setSelectedUser(undefined)
     } catch (error) {
       console.error("Error deleting routine", error);
     }
   };
 
-  // console.log(data)
-
   return (
-    <div onClick={handleCloseRoutine} className="fixed z-10 top-0 left-0 w-screen h-screen flex items-center justify-center bg-black/[0.5] backdrop-blur-sm">
-      <div onClick={handleCloseRoutineClick} className="flex flex-row rounded-2xl boxshadow bg-light-backg p-6 relative">
+    <div className="fixed z-30 top-0 left-0 w-screen h-screen flex items-center justify-center bg-black/[0.5] backdrop-blur-sm">
+      <div className="min-w-[70%] min-h-[70%] flex flex-row rounded-2xl boxshadow bg-light-backg p-6 relative">
         {
-          Object.keys(data).map((routineKey) => (
-            <section className="flex flex-col">
+          Object.keys(data).map((routineKey, idx) => (
+            <section key={idx} className="flex flex-col">
               <h2 className="font-semibold text-3xl p-5">
                 Day {routineKey}
               </h2>
@@ -67,7 +67,7 @@ export const ShowRoutine = ({fnc2, show, setShow }) => {
             </section>
           ))
         }
-        <button onClick={handleCloseRoutine} className="bg-light-primary rounded-lg p-2 text-light-secondary flex justify-center mb-auto ml-24
+        <button onClick={() => setSelectedRoutine(null)} className="bg-light-primary rounded-lg p-2 text-light-secondary flex justify-center mb-auto ml-24
           hover:scale-[1.02] transition-transform active:scale-[0.99]">
           <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_313_609)">
@@ -85,6 +85,12 @@ export const ShowRoutine = ({fnc2, show, setShow }) => {
         hover:scale-[1.02] transition-transform active:scale-[0.99]">
           Borrar rutina
         </button>
+        <p className="absolute bottom-10 left-10">
+          {`Routine Link: `}
+          <a href={routineLink} className="text-light-primary underline">
+            {routineLink}
+          </a>
+        </p>
       </div>
     </div>
   );

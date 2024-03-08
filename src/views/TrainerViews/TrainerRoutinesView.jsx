@@ -19,7 +19,7 @@ export const TrainerRoutinesView = () => {
 
   const [mobileMgGroupOpen, setMobileMgGroupOpen] = useState(false)
 
-  const { selectedUser } = useContext(TrainerContext)
+  const { selectedUser, setSelectedUser } = useContext(TrainerContext)
 
   const sensors = useSensors(
     useSensor(TouchSensor),
@@ -81,6 +81,7 @@ export const TrainerRoutinesView = () => {
       )
       .then(() => {
         setweekArray([])
+        setSelectedUser(undefined)
       })
 
       setSubmitApproved(false)
