@@ -12,5 +12,5 @@ RUN npm run build
 
 FROM nginx
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=node ./dist /usr/share/nginx/html
+COPY --from=node /app/dist /usr/share/nginx/html
 EXPOSE 5173
