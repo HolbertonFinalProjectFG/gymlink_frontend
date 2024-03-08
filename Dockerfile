@@ -10,7 +10,6 @@ COPY . /home/app/
 
 RUN npm run build
 
-FROM nginx
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=node home/app/dist/ /usr/share/nginx/html
 EXPOSE 5173
+
+CMD ["npm", "run", "dev"]
