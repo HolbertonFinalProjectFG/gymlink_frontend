@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { SeeRoutineButton } from '../SeeRoutineButton'
-import { ShowRoutine } from '../Form/ShowRoutine'
+import { TrainerContext } from '../../../context/TrainerContext/TrainerContext'
 
-
-export const TableRow = ({ obj, field, routineExist }) => {
-  const [show, setShow] = useState(false)
+export const TableRow = ({ obj, field, routineId}) => {
+  
   const [selectedId, setSelectedId] = useState(null)
-  // console.log(obj)
+  const { setSelectedRoutine, setSelectedUser } = useContext(TrainerContext)
+
+  const navigate = useNavigate()
 
   const handleSelectedClient = () => {
     setSelectedId({
@@ -16,9 +18,15 @@ export const TableRow = ({ obj, field, routineExist }) => {
         : obj.user_id
     })
   }
-  console.log(selectedId)
+
   const handleShowRoutine = () => {
-    setShow(true)
+
+    if (routineId === null){
+      navigate('/trainer/routines')
+      setSelectedUser(obj.user_id)
+    }
+
+    setSelectedRoutine(routineId)
   }
 
   return (
@@ -31,8 +39,10 @@ export const TableRow = ({ obj, field, routineExist }) => {
         })
       }
       <td>
-        <SeeRoutineButton fnc={() => handleShowRoutine()} routineExist={routineExist}/>
-        <ShowRoutine fnc2={() => handleSelectedClient} show={show} setShow={setShow}/>
+        <SeeRoutineButton
+          fnc={() => handleShowRoutine()}
+          routineId={routineId}
+        />
       </td>
     </tr>
   )
