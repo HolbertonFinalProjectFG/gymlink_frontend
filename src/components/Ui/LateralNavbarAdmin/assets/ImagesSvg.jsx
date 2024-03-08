@@ -40,3 +40,13 @@ export const WarehouseSvg = () => {
 
 }
 
+export const HamMenu = () => {
+  return(
+    <svg className={config} width="112" height="105" viewBox="0 0 112 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="111.491" y="42" width="20" height="111.491" rx="10" transform="rotate(90 111.491 42)" fill="#F09518"/>
+      <rect x="111.722" width="20" height="111.491" rx="10" transform="rotate(90 111.722 0)" fill="#F09518"/>
+      <rect y="105" width="20" height="111.491" rx="10" transform="rotate(-90 0 105)" fill="#F09518"/>
+    </svg>
+  )
+}
+

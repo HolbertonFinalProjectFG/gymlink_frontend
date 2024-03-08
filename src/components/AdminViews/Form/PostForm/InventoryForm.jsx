@@ -65,9 +65,9 @@ export const InventoryForm = ({ state, setState }) => {
           'item added correctly'
         }
       </span>
-      <div className="bg-light-backg text-light-secondary_op flex flex-col relative p-10 rounded-3xl w-[60%] min-w-[10rem] max-w-[30rem] boxshadow">
-        <button onClick={() => setState()} className="bg-light-primary rounded-xl absolute top-5 right-5 p-2 text-light-secondary hover:scale-[1.02] active:scale-[0.97] transition-all hover:scale-[0.99]">
-          <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div className="md:p-8 md:w-[90%] bg-light-backg text-light-secondary_op flex flex-col relative p-10 rounded-3xl w-[60%] min-w-[10rem] max-w-[30rem] boxshadow">
+        <button onClick={() => setState()} className="md:p-1 md:top-3 md:right-3 md:bg-transparent md:text-light-secondary_op bg-light-primary rounded-xl absolute top-5 right-5 p-2 text-light-secondary hover:scale-[1.02] active:scale-[0.97] transition-all hover:scale-[0.99]">
+          <svg className='md:scale-75' width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_313_609)">
               <path d="M4 4L23.0919 23.0919" stroke="currentColor" strokeWidth="6" strokeLinecap="round"/>
               <path d="M4 23.0919L23.0919 4.00001" stroke="currentColor" strokeWidth="6" strokeLinecap="round"/>
@@ -79,10 +79,10 @@ export const InventoryForm = ({ state, setState }) => {
             </defs>
           </svg>
         </button>
-        <h1 className="text-left mb-10 text-3xl font-bold">
+        <h1 className="md:text-2xl md:mb-5 text-left mb-10 text-3xl font-bold">
           Add new item
         </h1>
-        <form className="flex flex-col self-center items-center gap-3 overflow-y-auto h-full p-1 w-[90%]">
+        <form className="md:w-full md:gap-1 flex flex-col self-center items-center gap-3 overflow-y-auto h-full p-1 w-[90%]">
         {
           formConfig
             ? formConfig.map((e, idx) =>
@@ -90,9 +90,9 @@ export const InventoryForm = ({ state, setState }) => {
             )
             : <></>
         }
-        <div className="flex flex-col gap-2  w-full">
+        <div className="flex flex-col gap-2 w-full">
         <input
-          className="input h-12"
+          className="input h-12 md:h-10 md:rounded-md bg-white text-gray-500"
           type='number' min={0} name='quantity' value={quantity}
           placeholder='Quantity' onChange={onInputChange}
         />
@@ -104,7 +104,7 @@ export const InventoryForm = ({ state, setState }) => {
       </div>
         </form>
         <button className="
-          mt-10 bg-light-primary ml-auto mr-auto w-full
+          md:w-[80%] mt-10 bg-light-primary ml-auto mr-auto w-full
           min-h-[3rem] text-lg font-bold text-light-secondary rounded-[10px]
           hover:scale-[1.01] transition-transform active:scale-[0.99]"
           onClick={onFormSubmit}

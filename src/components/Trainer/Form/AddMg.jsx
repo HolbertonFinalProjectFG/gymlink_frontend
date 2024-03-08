@@ -62,7 +62,7 @@ export const AddMg = ({ show, setShow}) => {
             <label className="text-3xl font-bold mb-5 block p-10">Muscular Group:</label>
             <button onClick={handleCloseForm} className='bg-light-primary text-light-secondary p-2 rounded-xl w-auto h-11 mb-auto ml-auto mr-6 mt-6
                 hover:scale-[1.01] transition-transform active:scale-[0.99]'>
-            <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clipPath="url(#clip0_313_609)">
                     <path d="M4 4L23.0919 23.0919" stroke="currentColor" strokeWidth="6" strokeLinecap="round"/>
                     <path d="M4 23.0919L23.0919 4.00001" stroke="currentColor" strokeWidth="6" strokeLinecap="round"/>
