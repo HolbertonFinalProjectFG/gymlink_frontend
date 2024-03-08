@@ -18,7 +18,7 @@ export const ShowRoutine = () => {
 
     setRoutineLink(
       import.meta.env.VITE_PUBLIC_URL
-      + `/routines/${ selectedRoutine }`
+      + `/routine/${ selectedRoutine }`
     )
   }, [selectedRoutine]);
   
