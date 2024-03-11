@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { HamMenu } from '../LateralNavbarAdmin/assets'
 
 const linksData = [
-  { img_path: <PersonsSvg/>, title: 'Clientes', link: 'clients' },
-  { img_path: <RoutineSvg/>, title: 'Rutinas', link: 'routines' },
+  { img_path: <PersonsSvg/>, title: 'Clients', link: 'clients' },
+  { img_path: <RoutineSvg/>, title: 'Routines', link: 'routines' },
   // {'img_path': <PaperSvg/>, 'title': 'Reglas', 'link':''}
 ]
 
