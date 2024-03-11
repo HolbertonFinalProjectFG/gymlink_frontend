@@ -41,7 +41,7 @@ export const ShowRoutine = () => {
 
   return (
     <div className="absolute z-30 top-0 left-0 w-screen h-screen flex items-center justify-center bg-black/[0.5] backdrop-blur-sm md:p-6 sm:p-3">
-      <div className="w-full h-fit md:max-w-[80%] sm:max-w-full sm:max-h-[calc(100%-5rem)] sm:mt-10 max-w-[70%] max-h-[80%] rounded-2xl boxshadow bg-light-backg md:p-3 p-6 relative flex flex-col">
+      <div className="w-full h-fit md:max-w-[80%] min-h-[60%] sm:max-w-full sm:max-h-[calc(100%-5rem)] sm:mt-10 max-w-[60%] max-h-[80%] rounded-2xl boxshadow bg-light-backg md:p-3 p-6 relative flex flex-col">
         <section className="w-full h-full flex md:flex-col overflow-auto gap-10 flex-1">
             {
               Object.keys(data).map((routineKey, idx) => (
