@@ -1,15 +1,17 @@
 FROM node:20.11.0 AS builder
 
-WORKDIR /home/app/
+WORKDIR /app
 
-COPY package.json ./
+COPY . .
 
 RUN npm install
 
-COPY . /home/app/
-
 RUN npm run build
 
-EXPOSE 5173
+FROM nginx AS prod
 
-CMD ["npm", "run", "dev"]
+COPY nginx.conf /etc/nginx/nginx.conf
+
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+EXPOSE 80
