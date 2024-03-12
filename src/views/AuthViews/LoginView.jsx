@@ -1,5 +1,5 @@
 import { LoginForm } from "../../components/Auth/LoginForm"
-import video from '../../components/Auth/assets/Workout.mp4'
+import video from './assets/Workout.mp4'
 import './LoginView.css'
 
 export const LoginView = () => {
