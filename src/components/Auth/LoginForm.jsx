@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useForm } from "../../hooks/useForm"
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 const initialState = {
   email: 'admin@gmail.com',
@@ -16,6 +16,7 @@ export const LoginForm = () => {
   const [loginError, setLoginError] = useState(false)
   const loginUrl = import.meta.env.VITE_BACKEND_URL + '/api/login'
   const navigate = useNavigate()
+
 
   const handleOnChangeProfile = (e) => {
     setLogInState(e.target.value)
