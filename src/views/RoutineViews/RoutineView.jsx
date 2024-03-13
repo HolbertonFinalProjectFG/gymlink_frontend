@@ -20,7 +20,7 @@ export const RoutineView = () => {
       <img src=''></img>
       <div className='pb-10 flex-col bg-light-backg w-full overflow-auto'>
         <h1 className='w-full m-auto text-center py-6 text-4xl md:text-3xl font-bold'>YOUR ROUTINE</h1>
-        <div className='w-full px-10 md:p-5 m-auto'>
+        <div className='md:w-full w-1/2 px-10 md:p-5 m-auto'>
           {
             Object.entries(routineData).map(([key, value]) => {
                  return (

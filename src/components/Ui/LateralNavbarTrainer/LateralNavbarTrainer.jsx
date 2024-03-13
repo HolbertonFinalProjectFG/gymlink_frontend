@@ -18,7 +18,7 @@ export const LateralNavbarTrainer = () => {
       <nav className="group w-[7rem] md:hidden overflow-hidden transition-all flex flex-col h-svh hover:w-[18rem] items-center bg-light-secondary p-8 group-hover:px-8 gap-12 text-light-secondary_op">
         <NavLink className="group flex w-full items-center justify-between transition-colors rounded-xl">
           <div className="min-w-12 h-12 rounded-xl bg-light-secondary_op"></div>
-          <div className="w-0 group-hover:w-full opacity-0 group-hover:opacity-100 text-end transition-all group:hover pr-4">Facundo <br/> Sánchez</div>
+          <div className="w-0 group-hover:w-full opacity-0 group-hover:opacity-100 text-end transition-all group:hover pr-4">Trainer</div>
         </NavLink>
         <ul className="w-full flex flex-col items-center justify-left gap-3">
           {

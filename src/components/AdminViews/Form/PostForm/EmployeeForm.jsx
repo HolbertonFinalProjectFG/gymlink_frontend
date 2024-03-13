@@ -84,8 +84,8 @@ export const EmployeeForm = ({ state, setState }) => {
       console.log(roleState)
       axios.post(postUrl, {
         ...formState,
-        role_id: roleState === 'trainer' ? [3] : [5]
-        // trainer_id: selectedTrainer === '' ? null : parseInt(selectedTrainer)
+        role_id: roleState === 'trainer' ? [3] : [5],
+        trainer_id: null
       }, { withCredentials: true })
         .then(({ data }) => {
           if (data.ok === true) {

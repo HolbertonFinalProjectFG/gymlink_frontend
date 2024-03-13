@@ -3,7 +3,7 @@ import { PersonSvg, WarehouseSvg, PersonsSvg, HamMenu } from './assets'
 import { useState } from 'react'
 
 const linksData = [
-  { img_path: <PersonsSvg/>, title: 'Client', link: 'clients' },
+  { img_path: <PersonsSvg/>, title: 'Clients', link: 'clients' },
   { img_path: <PersonSvg/>, title: 'Employees', link: 'employees' },
   { img_path: <WarehouseSvg/>, title: 'Inventory', link: 'inventory' }
   // {'img_path': <PaperSvg/>, 'title': 'Reglas', 'link':''}
@@ -19,7 +19,7 @@ export const LateralNavbarAdmin = () => {
       <nav className="group md:hidden w-[7rem] overflow-hidden transition-all flex flex-col h-svh hover:w-[18rem] items-center bg-light-secondary p-8 group-hover:px-8 gap-12 text-light-secondary_op">
         <NavLink className="group flex w-full items-center justify-between transition-colors rounded-xl">
           <div className="min-w-12 h-12 rounded-xl bg-light-secondary_op"></div>
-          <div className="w-0 group-hover:w-full opacity-0 group-hover:opacity-100 text-end transition-all group:hover pr-4">John Doe</div>
+          <div className="w-0 group-hover:w-full opacity-0 group-hover:opacity-100 text-end transition-all group:hover pr-4">Admin</div>
         </NavLink>
         <ul className="w-full flex flex-col items-center justify-left gap-3">
           {
